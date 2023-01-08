@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  omni-channel:
+    build:
+      context: ..
+      dockerfile: ./.devcontainer/Dockerfile
+      args:
+        - "VARIANT=3.10-bullseye"
+        - "NODE_VERSION=lts/*"
+
+    container_name: omni-channel-devcon
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ..:/workspaces/my-lovely-cat:cached
+    
+    networks:
+      - omni-channel-network
+    
+    command: sleep infinity
+
+networks:
+  omni-channel-network:
+    name: omni-channel-network
+    external: true
