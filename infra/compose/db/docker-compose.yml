@@ -15,7 +15,7 @@ services:
         target: /data/db
     
     networks:
-      - omni-network
+      - omni-channel-network
   
   omni-mongo-express:
     image: mongo-express
@@ -30,9 +30,9 @@ services:
       ME_CONFIG_MONGODB_URL: mongodb://root:P4ssw0rd@omni-mongo-db:27017/
     
     networks:
-      - omni-network
+      - omni-channel-network
 
 networks:
-  omni-network:
-    name: omni-network
+  omni-channel-network:
+    name: omni-channel-network
     external: true

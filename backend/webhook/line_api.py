@@ -3,7 +3,7 @@ from flask_restful import Resource
 import base64, hashlib, hmac,os
 from dotenv import load_dotenv
 # from common_lib.pub_sub_client import Publisher
-# from common_lib.db_context import MessageDbContext
+from db_context import MessageDbContext
 
 load_dotenv('../.env')
 
@@ -11,7 +11,7 @@ LINE_SECRET_ID=os.environ['LINE_SECRET_ID']
 # RABBITMQ_HOST=os.environ['RABBITMQ_HOST']
 # LINE_WEBHOOK_EXCHANE=os.environ['LINE_WEBHOOK_EXCHANE']
 # LINE_WEBHOOK_ROUTING_KEY=os.environ['LINE_WEBHOOK_ROUTING_KEY']
-# MONGODB_URL=os.environ['MONGODB_URL']
+MONGODB_URL=os.environ['MONGODB_URL']
 
 class LineApi(Resource):
     def get(self, client_id):
@@ -35,9 +35,12 @@ class LineApi(Resource):
         # events = data['events']
         
         if val_sig:
-            # msg_db_context = MessageDbContext(MONGODB_URL)
-
-            # result = msg_db_context.save(data)
+            member_id = data['events'][0]['source']['userId']
+            print(member_id)
+            MessageDbContext(MONGODB_URL, client_id, member_id=member_id, message=data)
+            # message.save(message.message_cols)
+            # result = msg_db_context.save()
+            # print(result)
 
             response = jsonify({"message": "success", "client_id": client_id, "data": data})
             response.status_code = 200

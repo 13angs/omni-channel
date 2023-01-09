@@ -5,7 +5,7 @@
 	"service": "omni-channel",
 	"dockerComposeFile": "docker-compose.yml",
 	"shutdownAction": "stopCompose",
-	"workspaceFolder": "/workspaces/my-lovely-cat",
+	"workspaceFolder": "/workspaces/omni-channel",
 
 	// Configure tool-specific properties.
 	"customizations": {

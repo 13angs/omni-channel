@@ -13,7 +13,7 @@ services:
 
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ..:/workspaces/my-lovely-cat:cached
+      - ..:/workspaces/omni-channel:cached
     
     networks:
       - omni-channel-network
